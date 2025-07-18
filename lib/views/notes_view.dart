@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notesapp/widgets/add_note_button_sheet.dart';
 import 'package:notesapp/widgets/notes_view_body.dart';
 import 'package:notesapp/cubits/add_note_cubit/add_notes_cubit.dart';
@@ -9,29 +10,32 @@ class NotesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            isScrollControlled: true,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+    return BlocProvider(
+      create: (BuildContext context) => NotesCubit(),
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
               ),
-            ),
-            context: context,
-            builder: (context) {
-              return BlocProvider.value(
-                value: BlocProvider.of<NotesCubit>(context),
-                child: const AddNoteButtonSheet(),
-              );
-            },
-          );
-        },
-        child: Icon(Icons.add),
+              context: context,
+              builder: (context) {
+                return BlocProvider.value(
+                  value: BlocProvider.of<AddNotesCubit>(context),
+                  child: const AddNoteButtonSheet(),
+                );
+              },
+            );
+          },
+          child: Icon(Icons.add),
+        ),
+        body: const NotesViewBody(),
       ),
-      body: const NotesViewBody(),
     );
   }
 }

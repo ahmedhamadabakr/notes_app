@@ -9,12 +9,11 @@ part 'notes_state.dart';
 class NotesCubit extends Cubit<NoteState> {
   NotesCubit() : super(NoteInitial());
 
-  addnote(NoteModel note) async {
-    emit(NoteLoading());
+  fetchAllNotes() async {
     try {
       var notesBox = Hive.box<NoteModel>(kNotsBox);
-      await notesBox.add(note);
-      emit(NoteSuccess(noteModel: []));
+
+      emit(NoteSuccess(noteModel: notesBox.values.toList()));
     } catch (e) {
       emit(NoteFailure(e.toString()));
     }
