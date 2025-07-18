@@ -1,16 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SimbleBlocObserver implements   BlocObserver {
+class SimbleBlocObserver implements BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
-
-debugPrint("change : $change");
+    debugPrint("change : $change");
   }
 
   @override
   void onClose(BlocBase bloc) {
-    // TODO: implement onClose
+    debugPrint("close : close");
   }
 
   @override

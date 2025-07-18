@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:notesapp/widgets/add_note_button_sheet.dart';
 import 'package:notesapp/widgets/notes_view_body.dart';
+import 'package:notesapp/cubits/add_note_cubit/add_notes_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
@@ -19,7 +21,10 @@ class NotesView extends StatelessWidget {
             ),
             context: context,
             builder: (context) {
-              return const AddNoteButtonSheet();
+              return BlocProvider.value(
+                value: BlocProvider.of<NotesCubit>(context),
+                child: const AddNoteButtonSheet(),
+              );
             },
           );
         },
