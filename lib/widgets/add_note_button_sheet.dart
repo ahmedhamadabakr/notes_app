@@ -25,7 +25,10 @@ class AddNoteButtonSheet extends StatelessWidget {
           }
         },
         builder: (BuildContext context, state) {
-          return const SingleChildScrollView(child: AddNoteForm());
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoading ? true : false,
+            child: const SingleChildScrollView(child: AddNoteForm()),
+          );
         },
       ),
     );
