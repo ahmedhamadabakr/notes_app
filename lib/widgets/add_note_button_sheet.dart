@@ -13,9 +13,7 @@ class AddNoteButtonSheet extends StatelessWidget {
       create: (BuildContext context) => AddNotesCubit(),
       child: BlocConsumer<AddNotesCubit, AddNoteState>(
         listener: (BuildContext context, state) {
-          if (state is AddNoteFailure) {
-            print("errrrorrrr  :  ${state.errMessage}");
-          }
+          if (state is AddNoteFailure) {}
           if (state is AddNoteSuccess) {
             BlocProvider.of<NotesCubit>(context).fetchAllNotes();
 
