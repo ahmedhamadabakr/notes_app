@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/cubits/add_note_cubit/add_notes_cubit.dart';
 import 'package:notesapp/model/note_model.dart';
 import 'package:notesapp/widgets/custom_text_field.dart';
+import 'package:intl/intl.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -16,6 +17,16 @@ class _AddNoteFormState extends State<AddNoteForm> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   String? title, content;
+
+  DateTime now = DateTime.now();
+  late String formattedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    formattedDate = DateFormat('dd-MM-yyyy – hh:mm').format(now);
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +64,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         Colors.blue.value,
                         title: title!,
                         content: content!,
-                        date: DateTime.now().toString(),
+                        date: formattedDate,
                       );
 
-                      BlocProvider.of<AddNotesCubit>(context).addnote(noteModel);
+                      BlocProvider.of<AddNotesCubit>(
+                        context,
+                      ).addnote(noteModel);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
