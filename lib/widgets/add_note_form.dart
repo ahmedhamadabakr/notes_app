@@ -36,7 +36,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             CustomTextField(
               hint: 'Title',
               onSave: (value) {
@@ -53,6 +53,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
             ),
             const SizedBox(height: 32),
             const ColorsListView(),
+            const SizedBox(height: 32),
+
             BlocBuilder<AddNotesCubit, AddNoteState>(
               builder: (BuildContext context, state) {
                 return CustomButton(
