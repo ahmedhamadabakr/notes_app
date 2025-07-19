@@ -12,6 +12,7 @@ class CustomSearchIcon extends StatelessWidget {
       color: Colors.white,
       onPressed: onPressed,
       icon: Icon(icon),
+
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all(
           const Color.fromARGB(98, 158, 158, 158),

@@ -11,7 +11,15 @@ class NotesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NotesCubit, NoteState>(
       builder: (context, state) {
-        List<NoteModel> notes = BlocProvider.of<NotesCubit>(context).notes!;
+        final cubit = BlocProvider.of<NotesCubit>(context);
+        List<NoteModel> notes = cubit.filteredNotes ?? cubit.notes!;
+        notes = notes.reversed.toList();
+        if (notes.isEmpty) {
+          return const Center(
+            child: Text('No notes yet... add now!'),
+          );
+        }
+
         return ListView.builder(
           itemCount: notes.length,
           padding: EdgeInsets.zero,
