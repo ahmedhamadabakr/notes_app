@@ -4,7 +4,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notesapp/constants.dart';
 import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notesapp/model/note_model.dart';
-import 'package:notesapp/simble_bloc_observer.dart';
 import 'package:notesapp/views/notes_view.dart';
 
 void main() async {
@@ -15,7 +14,6 @@ void main() async {
 
   await Hive.openBox<NoteModel>(kNotsBox);
 
-  Bloc.observer = SimbleBlocObserver();
   runApp(const NotesApp());
 }
 

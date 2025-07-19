@@ -64,7 +64,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       formKey.currentState!.save();
 
                       var noteModel = NoteModel(
-                        Colors.blue.value,
+                        Colors.blue.toARGB32(),
                         title: title!,
                         content: content!,
                         date: formattedDate,
